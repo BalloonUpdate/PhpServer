@@ -1,0 +1,6 @@
+{
+    "mode": "common",
+    "paths": [
+        "@\\.minecraft/mods/[^/]+\\.jar"
+    ]
+}
