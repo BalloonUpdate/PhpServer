@@ -29,11 +29,8 @@ if($purpose=='')
     echo Spyc::YAMLDump(array_merge([
         'version' => '3.0',
         'server_type' => 'php',
-        'upgrade' => 'index.php?purpose=upgrade&source=upgrade',
         'update' => 'index.php?purpose=update&source=res'
     ], $data), false, false, true);
-} else if($purpose=='upgrade') {
-    echo Spyc::YAMLDump(dir_hash('upgrade'), false, false, true);
 } else if($purpose=='update') {
     echo Spyc::YAMLDump(dir_hash('res'), false, false, true);
 } else {
