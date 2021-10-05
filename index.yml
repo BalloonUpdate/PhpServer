@@ -1,7 +1,9 @@
-mode: common
-paths:
+common_mode:
   - .minecraft/mods
-  - .minecraft/test
+once_mode: []
+
+  # - .minecraft/test
+  # - '@\.minecraft/mods/[^/]+\.jar'
   # - '.minecraft/1.12.2-forge1.12.2-14.23.5.2855'
   # - \.minecraft/1.12.2-forge1.12.2-14.23.5.2855
   # - \\.minecraft/modes

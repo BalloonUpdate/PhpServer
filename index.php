@@ -27,8 +27,6 @@ if($purpose=='')
 {
     $data = Spyc::YAMLLoad(file_get_contents('index.yml'));
     echo Spyc::YAMLDump(array_merge([
-        'version' => '3.0',
-        'server_type' => 'php',
         'update' => 'index.php?purpose=update&source=res'
     ], $data), false, false, true);
 } else if($purpose=='update') {
