@@ -20,7 +20,7 @@ function dir_hash($path)
     return $tree;
 }
 
-header('Content-Type:application/yaml;charset=utf-8');
+header('Content-Type:text/plain;charset=utf-8');
 
 $purpose = isset($_GET["purpose"])? htmlspecialchars($_GET["purpose"]):'';
 if($purpose=='')
