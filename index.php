@@ -13,11 +13,16 @@ function dir_hash($path)
             if(is_dir($p))
                 array_push($tree, [ 'name' => $file, 'children' => dir_hash($p) ]);
             if(is_file($p))
-                array_push($tree, [ 'name' => $file, 'length' => filesize($p), 'hash' => sha1_file($p) ]);
+                array_push($tree, [ 'name' => $file, 'length' => filesize($p), 'hash' => sha1_file($p), 'modified' => filemtime($p) ]);
         }
     }
     $handle->close();
     return $tree;
+}
+
+function jsonify($obj, $pretty = false)
+{
+    return json_encode($obj, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
 
 header('Content-Type:text/plain;charset=utf-8');
@@ -25,14 +30,14 @@ header('Content-Type:text/plain;charset=utf-8');
 $purpose = isset($_GET["purpose"])? htmlspecialchars($_GET["purpose"]):'';
 if($purpose=='')
 {
-    $data = Spyc::YAMLLoad(file_get_contents('index.yml'));
-    echo Spyc::YAMLDump(array_merge([
+    $data = Spyc::YAMLLoad(file_get_contents('config.yml'));
+    echo jsonify(array_merge([
         'update' => 'index.php?purpose=update&source=res'
-    ], $data), false, false, true);
+    ] , $data));
 } else if($purpose=='update') {
-    echo Spyc::YAMLDump(dir_hash('res'), false, false, true);
+    echo jsonify(dir_hash('res'));
 } else {
-    echo Spyc::YAMLDump([ 'error' => 'something went wrong' ], false, false, true);
+    echo jsonify([ 'error' => 'something went wrong' ]);
 }
 
 ?>
