@@ -22,7 +22,7 @@ function dir_hash($path)
 
 function jsonify($obj, $pretty = false)
 {
-    return json_encode($obj, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    return json_encode($obj, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 header('Content-Type:text/plain;charset=utf-8');
